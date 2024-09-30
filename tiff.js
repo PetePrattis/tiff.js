@@ -420,15 +420,12 @@ Tiff.prototype['readRGBAImage'] = Tiff.prototype.readRGBAImage;
 Tiff.prototype['close'] = Tiff.prototype.close;
 Tiff['Exception'] = Tiff.Exception;
 Tiff['initialize'] = Tiff.initialize;
-if (typeof process === 'object' && typeof require === 'function') {
-    module['exports'] = Tiff;
-}
-else if (typeof define === "function" && define.amd) {
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = Tiff;
+} else if (typeof define === "function" && define.amd) {
     define('tiff', [], function () { return Tiff; });
-}
-else if (typeof window === 'object') {
-    window['Tiff'] = Tiff;
-}
-else if (typeof importScripts === 'function') {
-    self['Tiff'] = Tiff;
+} else if (typeof window === 'object') {
+    window.Tiff = Tiff;
+} else if (typeof self === 'object') {
+    self.Tiff = Tiff;
 }
